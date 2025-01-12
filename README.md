@@ -1,49 +1,123 @@
-PDF Parsing and Search Application
+# PDF Parsing and Search Application
 
-This project is a web-based application designed for uploading, parsing, and interacting with PDF documents. It allows users to extract text from PDFs, perform keyword-based searches, and generate concise summaries of the extracted text using modern NLP techniques.
+A web-based application designed for uploading, parsing, and interacting with PDF documents. Extract text from PDFs, perform keyword-based searches, and generate concise summaries using modern NLP techniques.
 
-Features
+## Features
 
-PDF Upload and Parsing: Extract text from uploaded PDF files.
+* **PDF Upload and Parsing**: Extract text from uploaded PDF files
+* **Search and Highlight**: Search for keywords in the extracted text and highlight occurrences
+* **Text Summarization**: Generate summaries of the extracted text for a quick overview
+* **User-Friendly Interface**: Intuitive design with React and Tailwind CSS
 
-Search and Highlight: Search for keywords in the extracted text and highlight occurrences.
+## Technologies Used
 
-Text Summarization: Generate summaries of the extracted text for a quick overview.
+### Frontend:
+* React.js
+* Tailwind CSS
 
-User-Friendly Interface: Intuitive design with React and Tailwind CSS.
+### Backend:
+* Flask
+* Python
+* Tesseract OCR (for text extraction)
+* Hugging Face Transformers (for text summarization)
 
-Technologies Used
+### Database:
+* MongoDB Atlas (optional for storing extracted text)
 
-Frontend:
+## Requirements
 
-React.js
+### Prerequisites:
+* Node.js
+* Python (3.8+)
+* pip (Python package manager)
+* Tesseract OCR installed on your system ([Installation Guide](link-to-guide))
+* MongoDB Atlas (optional)
 
-Tailwind CSS
+## Setup and Installation
 
-Backend:
+### 1. Clone the Repository:
+```bash
+git clone https://github.com/your-username/pdf-parsing-search.git
+cd pdf-parsing-search
+```
 
-Flask
+### 2. Backend Setup:
+```bash
+# Navigate to backend directory
+cd backend
 
-Python
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
 
-Tesseract OCR (for text extraction)
+# Install dependencies
+pip install -r requirements.txt
 
-Hugging Face Transformers (for text summarization)
+# Start Flask server
+python app.py
+```
 
-Database:
+### 3. Frontend Setup:
+```bash
+# Navigate to frontend directory
+cd ../frontend
 
-MongoDB Atlas (optional for storing extracted text)
+# Install dependencies
+npm install
 
-Requirements
+# Start development server
+npm run dev
+```
 
-Prerequisites:
+### 4. Run the Application:
+Open your browser and navigate to the frontend URL (usually `http://localhost:5173`).
 
-Node.js
+## Usage
 
-Python (3.8+)
+1. **Upload a PDF**: Use the upload form to select a PDF file
+2. **Extract Text**: View the extracted text in the interface
+3. **Search Keywords**: Use the search bar to find specific words or phrases in the text
+4. **Generate Summary**: Click the "Summarize" button to view a concise summary of the extracted text
 
-pip (Python package manager)
+## Project Structure
 
-Tesseract OCR installed on your system (Installation Guide)
+```
+pdf-parsing-search/
+|— backend/
+|   |— app.py (Flask API for text extraction and summarization)
+|   |— requirements.txt (Python dependencies)
+|— frontend/
+    |— src/
+        |— components/
+            |— UploadForm.jsx
+            |— SearchBar.jsx
+            |— SummaryButton.jsx
+        |— App.jsx (Main application)
+    |— package.json (Frontend dependencies)
+```
 
-MongoDB Atlas (optional)
+## Future Enhancements
+
+* PDF Preview: Display the uploaded document alongside extracted text
+* Multi-language Support: Extend capabilities to support more languages
+* Analytics Dashboard: Visualize document statistics and insights
+* Named Entity Recognition (NER): Extract specific entities like names, dates, and places
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request for any feature additions or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+## Acknowledgements
+
+* Tesseract OCR for text extraction
+* Hugging Face Transformers for text summarization
+
+## Contact
+
+* **Author**: Abhijeet Sharan
+* **GitHub**: [github.com/abhijeetsharan](https://github.com/abhijeetsharan)
+* **LinkedIn**: [linkedin.com/in/abhijeetsharan1510](https://linkedin.com/in/abhijeetsharan1510)
