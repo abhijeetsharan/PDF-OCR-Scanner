@@ -37,8 +37,8 @@ A web-based application designed for uploading, parsing, and interacting with PD
 
 ### 1. Clone the Repository:
 ```bash
-git clone https://github.com/your-username/pdf-parsing-search.git
-cd pdf-parsing-search
+git clone https://github.com/abhijeetsharan/PDF-OCR-Scanner.git
+cd PDF-OCR-Scanner
 ```
 
 ### 2. Backend Setup:
