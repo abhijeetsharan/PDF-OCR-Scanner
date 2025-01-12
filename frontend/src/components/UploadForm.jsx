@@ -3,14 +3,20 @@ import React, { useState } from 'react';
 const UploadForm = ({ onTextExtracted }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null); // For PDF preview
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.type === 'application/pdf') {
       setFile(selectedFile);
       setError(null);
+
+      // Create a URL for the PDF to preview it
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setPreviewUrl(objectUrl);
     } else {
       setError("Please upload a valid PDF file.");
+      setPreviewUrl(null); // Clear preview if file is not valid
     }
   };
 
@@ -56,6 +62,15 @@ const UploadForm = ({ onTextExtracted }) => {
             className="hidden"
           />
         </div>
+
+        {/* Display PDF preview */}
+        {previewUrl && (
+          <div className="mt-4">
+            <h3 className="text-gray-700 font-semibold">Preview:</h3>
+            <embed src={previewUrl} width="100%" height="400px" type="application/pdf" />
+          </div>
+        )}
+
         {file && (
           <p className="text-center text-gray-600">Selected file: {file.name}</p>
         )}
