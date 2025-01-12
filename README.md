@@ -30,8 +30,8 @@ A web-based application designed for uploading, parsing, and interacting with PD
 * Node.js
 * Python (3.8+)
 * pip (Python package manager)
-* Tesseract OCR installed on your system ([Installation Guide](link-to-guide))
-* MongoDB Atlas (optional)
+* Tesseract OCR installed on your system
+* MongoDB Atlas (NOTE : You need to configure the MongoDB Atlas and make the changes in .env file)
 
 ## Setup and Installation
 
