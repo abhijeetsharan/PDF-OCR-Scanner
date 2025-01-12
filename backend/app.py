@@ -8,6 +8,7 @@ from PIL import Image
 import pdfplumber
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from transformers import pipeline
 
 load_dotenv()
 mongodb_uri = os.getenv("MONGODB_URI")
@@ -26,7 +27,7 @@ collection = db['documents']
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# OCR Func
+# OCR Function
 def extract_text_from_image(pdf_path):
     images = convert_from_path(pdf_path)
     text = ""
@@ -34,7 +35,7 @@ def extract_text_from_image(pdf_path):
         text += pytesseract.image_to_string(image)
     return text
 
-# PDF parsing func
+# PDF parsing function
 def extract_text_from_pdf(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
         full_text = ""
@@ -72,6 +73,25 @@ def upload_file():
 # Save document to DB
 def save_document_to_db(text, ocr_text):
     collection.insert_one({"text": text, "ocr_text": ocr_text})
+
+# Load summarization pipeline
+summarizer = pipeline("summarization", model="t5-small", tokenizer="t5-small")
+
+@app.route('/summarize', methods=['POST'])
+def summarize_text():
+    data = request.get_json()
+    text = data.get('text', '')
+
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
+
+    try:
+        # Generate summary
+        summary = summarizer(text, max_length=150, min_length=40, do_sample=False)
+        return jsonify({"summary": summary[0]['summary_text']})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
 
 @app.route('/search', methods=['GET'])
 def search_documents():
