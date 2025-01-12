@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = ({ onSearchResults }) => {
+const SearchBar = ({ onSearchResults, onQueryChange }) => {
   const [query, setQuery] = useState('');
 
   const handleSearch = async () => {
@@ -8,6 +8,7 @@ const SearchBar = ({ onSearchResults }) => {
     const response = await fetch(`http://localhost:5000/search?query=${query}`);
     const data = await response.json();
     onSearchResults(data);
+    onQueryChange(query); // Pass the query to App
   };
 
   return (
